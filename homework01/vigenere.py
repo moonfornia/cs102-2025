@@ -1,6 +1,3 @@
-from pydoc import plaintext
-
-
 def encrypt_vigenere(plaintext: str, keyword: str) -> str:
     """
     Encrypts plaintext using a Vigenere cipher.
@@ -18,18 +15,18 @@ def encrypt_vigenere(plaintext: str, keyword: str) -> str:
     key_index = 0
 
     for char in plaintext:
-        if 'A' <= char <= 'Z':
+        if "A" <= char <= "Z":
             # Вычисляем сдвиг для текущего символа ключа
-            shift = ord(keyword[key_index % key_length]) - ord('A')
+            shift = ord(keyword[key_index % key_length]) - ord("A")
             # Шифруем символ
-            encrypted_char = chr((ord(char) - ord('A') + shift) % 26 + ord('A'))
+            encrypted_char = chr((ord(char) - ord("A") + shift) % 26 + ord("A"))
             ciphertext += encrypted_char
             key_index += 1
-        elif 'a' <= char <= 'z':
+        elif "a" <= char <= "z":
             # Вычисляем сдвиг для текущего символа ключа
-            shift = ord(keyword[key_index % key_length]) - ord('A')
+            shift = ord(keyword[key_index % key_length]) - ord("A")
             # Шифруем символ
-            encrypted_char = chr((ord(char) - ord('a') + shift) % 26 + ord('a'))
+            encrypted_char = chr((ord(char) - ord("a") + shift) % 26 + ord("a"))
             ciphertext += encrypted_char
             key_index += 1
         else:
@@ -58,18 +55,18 @@ def decrypt_vigenere(ciphertext: str, keyword: str) -> str:
     key_index = 0
 
     for char in ciphertext:
-        if 'A' <= char <= 'Z':
+        if "A" <= char <= "Z":
             # Вычисляем сдвиг для текущего символа ключа
-            shift = ord(keyword[key_index % key_length]) - ord('A')
+            shift = ord(keyword[key_index % key_length]) - ord("A")
             # Дешифруем символ
-            decrypted_char = chr((ord(char) - ord('A') - shift + 26) % 26 + ord('A'))
+            decrypted_char = chr((ord(char) - ord("A") - shift + 26) % 26 + ord("A"))
             plaintext += decrypted_char
             key_index += 1
-        elif 'a' <= char <= 'z':
+        elif "a" <= char <= "z":
             # Вычисляем сдвиг для текущего символа ключа
-            shift = ord(keyword[key_index % key_length]) - ord('A')
+            shift = ord(keyword[key_index % key_length]) - ord("A")
             # Дешифруем символ
-            decrypted_char = chr((ord(char) - ord('a') - shift + 26) % 26 + ord('a'))
+            decrypted_char = chr((ord(char) - ord("a") - shift + 26) % 26 + ord("a"))
             plaintext += decrypted_char
             key_index += 1
         else:

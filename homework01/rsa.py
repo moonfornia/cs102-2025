@@ -26,13 +26,6 @@ def is_prime(n: int) -> bool:
         i += 2
     return True
 
-    i = 3
-    while i * i <= num:
-        if num % i == 0:
-            return False
-        i += 2
-    return True
-
 
 def gcd(a: int, b: int) -> int:
     """
@@ -46,7 +39,6 @@ def gcd(a: int, b: int) -> int:
     while b:
         a, b = b, a % b
     return a
-
 
 
 def multiplicative_inverse(e: int, phi: int) -> int:
@@ -63,7 +55,6 @@ def multiplicative_inverse(e: int, phi: int) -> int:
         q = old_r // r
         old_r, r = r, old_r - q * r
         old_s, s = s, old_s - q * s
-
 
     return old_s % phi
 
@@ -86,26 +77,6 @@ def generate_keypair(p: int, q: int) -> tp.Tuple[tp.Tuple[int, int], tp.Tuple[in
     return ((e, n), (d, n))
 
 
-
-
-
-
-
-    e = random.randrange(1, phi)
-
-
-    g = gcd(e, phi)
-    while g != 1:
-        e = random.randrange(1, phi)
-        g = gcd(e, phi)
-
-
-    d = multiplicative_inverse(e, phi)
-
-
-    return ((e, n), (d, n))
-
-
 def encrypt(pk: tp.Tuple[int, int], plaintext: str) -> tp.List[int]:
 
     key, n = pk
@@ -119,7 +90,7 @@ def decrypt(pk: tp.Tuple[int, int], ciphertext: tp.List[int]) -> str:
 
     key, n = pk
 
-    plain = [chr((char ** key) % n) for char in ciphertext]
+    plain = [chr((char**key) % n) for char in ciphertext]
 
     return "".join(plain)
 
