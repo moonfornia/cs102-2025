@@ -13,8 +13,8 @@ def encrypt_vigenere(plaintext: str, keyword: str) -> str:
     keyword = keyword.upper()
     key_length = len(keyword)
     key_index = 0
-    acapital = ord('A')
-    a = ord('a')
+    acapital = ord("A")
+    a = ord("a")
 
     for char in plaintext:
         if "A" <= char <= "Z":
@@ -55,8 +55,8 @@ def decrypt_vigenere(ciphertext: str, keyword: str) -> str:
     keyword = keyword.upper()
     key_length = len(keyword)
     key_index = 0
-    acapital = ord('A')
-    a = ord('a')
+    acapital = ord("A")
+    a = ord("a")
 
     for char in ciphertext:
         if "A" <= char <= "Z":

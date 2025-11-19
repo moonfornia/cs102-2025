@@ -10,8 +10,8 @@ def encrypt_caesar(plaintext: str, shift: int = 3) -> str:
     >>> encrypt_caesar("")
     ''
     """
-    a = ord('a')
-    acapital = ord('A')
+    a = ord("a")
+    acapital = ord("A")
     ciphertext = ""
     for ch in plaintext:
         if "a" <= ch <= "z":
@@ -36,8 +36,8 @@ def decrypt_caesar(ciphertext: str, shift: int = 3) -> str:
     >>> decrypt_caesar("")
     ''
     """
-    a = ord('a')
-    acapital = ord('A')
+    a = ord("a")
+    acapital = ord("A")
     plaintext = ""
     for ch in ciphertext:
         if "a" <= ch <= "z":
