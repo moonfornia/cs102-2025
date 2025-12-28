@@ -4,6 +4,7 @@ import pathlib
 import random
 import typing as tp
 
+DIGITS = set("123456789")
 T = tp.TypeVar("T")
 
 
@@ -16,6 +17,7 @@ def read_sudoku(path: tp.Union[str, pathlib.Path]) -> tp.List[tp.List[str]]:
 
 
 def create_grid(puzzle: str) -> tp.List[tp.List[str]]:
+    """Создать двумерную сетку судоку из строки."""
     digits = [c for c in puzzle if c in "123456789."]
     grid = group(digits, 9)
     return grid
@@ -66,7 +68,7 @@ def get_col(grid: tp.List[tp.List[str]], pos: tp.Tuple[int, int]) -> tp.List[str
     ['3', '6', '9']
     """
     _, col = pos
-    return [grid[r][col] for r in range(len(grid))]
+    return [row[col] for row in grid]
 
 
 def get_block(grid: tp.List[tp.List[str]], pos: tp.Tuple[int, int]) -> tp.List[str]:
@@ -116,7 +118,7 @@ def find_possible_values(grid: tp.List[tp.List[str]], pos: tp.Tuple[int, int]) -
 
 def solve(grid: tp.List[tp.List[str]]) -> tp.Optional[tp.List[tp.List[str]]]:
     """Решение пазла, заданного в grid"""
-    """ Как решать Судоку?
+    """Как решать Судоку?
         1. Найти свободную позицию
         2. Найти все возможные значения, которые могут находиться на этой позиции
         3. Для каждого возможного значения:
@@ -144,7 +146,7 @@ def check_solution(solution: tp.List[tp.List[str]]) -> bool:
         row = set(get_row(solution, (i, 0)))
         col = set(get_col(solution, (0, i)))
         block = set(get_block(solution, (3 * (i // 3), 3 * (i % 3))))
-        if row != set("123456789") or col != set("123456789") or block != set("123456789"):
+        if row != DIGITS or col != DIGITS or block != DIGITS:
             return False
     return True
 
@@ -172,10 +174,10 @@ def generate_sudoku(n: int) -> tp.List[tp.List[str]]:
     """
     grid = [["."] * 9 for _ in range(9)]
     solve(grid)  # заполняем сетку полностью
-    cells = [(r, c) for r in range(9) for c in range(9)]
+    cells = [(row, col) for row in range(9) for col in range(9)]
     random.shuffle(cells)
-    for r, c in cells[n:]:
-        grid[r][c] = "."
+    for row, col in cells[n:]:
+        grid[row][col] = "."
     return grid
 
 
